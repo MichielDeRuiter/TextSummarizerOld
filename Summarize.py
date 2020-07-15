@@ -54,3 +54,56 @@ for i, r in df.iterrows():
 
    
 
+#%%
+df['LexRank_rouge-1_precision'] = ''
+df['LexRank_rouge-1_recall'] = ''
+df['LexRank_rouge-1_f1'] = ''
+df['LexRank_rouge-2_precision'] = ''
+df['LexRank_rouge-2_recall'] = ''
+df['LexRank_rouge-2_f1'] = ''
+df['LexRank_rouge-l_precision'] = ''
+df['LexRank_rouge-l_recall'] = ''
+df['LexRank_rouge-l_f1'] = ''
+
+df['Luhn_rouge-1_precision'] = ''
+df['Luhn_rouge-1_recall'] = ''
+df['Luhn_rouge-1_f1'] = ''
+df['Luhn_rouge-2_precision'] = ''
+df['Luhn_rouge-2_recall'] = ''
+df['Luhn_rouge-2_f1'] = ''
+df['Luhn_rouge-l_precision'] = ''
+df['Luhn_rouge-l_recall'] = ''
+df['Luhn_rouge-l_f1'] = ''
+
+df['LSA_rouge-1_precision'] = ''
+df['LSA_rouge-1_recall'] = ''
+df['LSA_rouge-1_f1'] = ''
+df['LSA_rouge-2_precision'] = ''
+df['LSA_rouge-2_recall'] = ''
+df['LSA_rouge-2_f1'] = ''
+df['LSA_rouge-l_precision'] = ''
+df['LSA_rouge-l_recall'] = ''
+df['LSA_rouge-l_f1'] = ''
+
+# %%
+for i, r in df.iterrows():
+    try:
+        scores = rouge.get_scores(df['summary_LexRank'].iloc[i], df['summary'].iloc[i])[0]
+
+        df['LexRank_rouge-1_precision'] = scores['rouge-1']['p']
+        df['LexRank_rouge-1_recall'] = scores['rouge-1']['r']
+        df['LexRank_rouge-1_f1'] = scores['rouge-1']['f']
+        df['LexRank_rouge-2_precision'] = scores['rouge-2']['p']
+        df['LexRank_rouge-2_recall'] = scores['rouge-2']['r']
+        df['LexRank_rouge-2_f1'] = scores['rouge-2']['f']
+        df['LexRank_rouge-l_precision'] = scores['rouge-l']['p']
+        df['LexRank_rouge-l_recall'] = scores['rouge-l']['r']
+        df['LexRank_rouge-l_f1'] = scores['rouge-l']['f']
+
+    except ValueError:
+        pass
+
+# %%
+df
+
+# %%
